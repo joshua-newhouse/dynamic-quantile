@@ -13,6 +13,7 @@ public class ApacheDescStatsTest {
 
         double[] arr = new double[10];
         IntStream.rangeClosed(1, 10).forEach( i-> arr[i-1]=i );
+        // generates ... (1,10)
 
         double q1 = ApacheQuantiles.getPercentile(arr, 75);
         double q2 = ApacheQuantiles.getPercentile(arr, 25);
