@@ -4,7 +4,7 @@ import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 
 import java.util.Arrays;
 
-public class Quantiles {
+public class ApacheQuantiles {
 
     public static double getPercentile(double[] arr, int p) {
         DescriptiveStatistics stats = new DescriptiveStatistics();
