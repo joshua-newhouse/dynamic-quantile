@@ -8,7 +8,7 @@ import static org.junit.Assert.assertEquals;
 
 public class ApplicationTest {
     @Test
-    public void referenceVerification() {
+    public void referenceVerificationTest() {
         double[] inputs1 = {
                 0.02, 0.15, 0.74, 3.39, 0.83,
                 22.37, 10.15, 15.43, 38.62, 15.92
@@ -53,5 +53,28 @@ public class ApplicationTest {
         assertEquals(4.44, q50.getMarkerHeight3(), 0.007);
         assertEquals(17.22, q50.getMarkerHeight4(), 0.017);
         assertEquals(38.62, q50.getMarkerHeight5(), 0.007);
+    }
+
+    @Test
+    public void benchmarkTest() {
+        int elements = 500000000;
+        double[] inputs = new double[elements];
+
+        for (int i = 0; i < inputs.length; i++) {
+            inputs[i] = Math.random();
+        }
+
+        Quantile q90 = new Quantile(0.90);
+
+        long startTime = System.currentTimeMillis();
+        q90.update(inputs);
+        long endTime = System.currentTimeMillis();
+
+        double totalTimeSeconds = (double)(endTime - startTime) / 1000.0;
+
+        System.out.println(String.format("Total time in seconds: %f\nObservations per second: %f",
+                totalTimeSeconds, (double)elements / totalTimeSeconds));
+
+        System.out.println(q90.toString());
     }
 }
