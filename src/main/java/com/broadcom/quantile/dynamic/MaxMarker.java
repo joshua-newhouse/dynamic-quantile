@@ -6,7 +6,7 @@ public class MaxMarker extends Marker {
     }
 
     @Override
-    public void update(double value) {
+    public void updatePosition(double value) {
         this.n++;
         this.updateDesiredPosition();
 

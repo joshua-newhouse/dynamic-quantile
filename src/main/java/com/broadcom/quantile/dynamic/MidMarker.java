@@ -14,22 +14,22 @@ public class MidMarker extends Marker {
     }
 
     @Override
-    public void update(double value) {
+    public void updatePosition(double value) {
         if (value < this.q) {
             this.n++;
         }
 
         this.updateDesiredPosition();
-        updateQuantile();
     }
 
-    private void updateQuantile() {
+    @Override
+    public void updateQuantile() {
         double offsetFromDesired = this.nPrime - this.n;
         int offsetFromRNeighbor = rNeighbor.n - this.n;
         int offsetFromLNeighbor = lNeighbor.n - this.n;
         int displacement = offsetFromDesired < 0.0 ? -1 : 1;
 
-        if (offsetFromDesired >= 1 && offsetFromRNeighbor > 1 ||
+        if (offsetFromDesired >= 1.0 && offsetFromRNeighbor > 1 ||
                 offsetFromDesired <= -1 && offsetFromLNeighbor < -1) {
             double qTmp = pSquared(displacement);
             if (lNeighbor.q >= qTmp || qTmp >= rNeighbor.q) {
@@ -37,9 +37,8 @@ public class MidMarker extends Marker {
             }
 
             this.q = qTmp;
+            this.n += displacement;
         }
-
-        this.n += displacement;
     }
 
     private double pSquared(int displacement) {

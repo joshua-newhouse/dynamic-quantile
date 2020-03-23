@@ -6,7 +6,7 @@ public class MinMarker extends Marker {
     }
 
     @Override
-    public void update(double value) {
+    public void updatePosition(double value) {
         if (value < this.q) {
             this.q = value;
         }

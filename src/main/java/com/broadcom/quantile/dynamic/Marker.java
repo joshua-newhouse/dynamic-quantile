@@ -20,7 +20,11 @@ public abstract class Marker {
         return this.q;
     }
 
-    public abstract void update(double value);
+    public abstract void updatePosition(double value);
+
+    public void updateQuantile() {
+        // no-op default
+    }
 
     @Override
     public String toString() {

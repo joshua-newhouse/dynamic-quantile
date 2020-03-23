@@ -25,7 +25,7 @@ public class Quantile {
 
         if (!initialized) {
             initialize(Arrays.copyOfRange(inputBuffer, 0, 5));
-            index = 6;
+            index = 5;
             initialized = true;
         }
 
@@ -40,6 +40,66 @@ public class Quantile {
 
     public double getUpperQuantileValue() {
         return marker4.getValue();
+    }
+
+    public int getMarkerPosition1() {
+        return marker1.n;
+    }
+
+    public int getMarkerPosition2() {
+        return marker2.n;
+    }
+
+    public int getMarkerPosition3() {
+        return marker3.n;
+    }
+
+    public int getMarkerPosition4() {
+        return marker4.n;
+    }
+
+    public int getMarkerPosition5() {
+        return marker5.n;
+    }
+
+    public double getMarkerDesiredPosition1() {
+        return marker1.nPrime;
+    }
+
+    public double getMarkerDesiredPosition2() {
+        return marker2.nPrime;
+    }
+
+    public double getMarkerDesiredPosition3() {
+        return marker3.nPrime;
+    }
+
+    public double getMarkerDesiredPosition4() {
+        return marker4.nPrime;
+    }
+
+    public double getMarkerDesiredPosition5() {
+        return marker5.nPrime;
+    }
+
+    public double getMarkerHeight1() {
+        return marker1.q;
+    }
+
+    public double getMarkerHeight2() {
+        return marker2.q;
+    }
+
+    public double getMarkerHeight3() {
+        return marker3.q;
+    }
+
+    public double getMarkerHeight4() {
+        return marker4.q;
+    }
+
+    public double getMarkerHeight5() {
+        return marker5.q;
     }
 
     @Override
@@ -57,11 +117,15 @@ public class Quantile {
     }
 
     private void consume(double input) {
-        marker1.update(input);
-        marker2.update(input);
-        marker3.update(input);
-        marker4.update(input);
-        marker5.update(input);
+        marker1.updatePosition(input);
+        marker2.updatePosition(input);
+        marker3.updatePosition(input);
+        marker4.updatePosition(input);
+        marker5.updatePosition(input);
+
+        marker2.updateQuantile();
+        marker3.updateQuantile();
+        marker4.updateQuantile();
     }
 
     private void initialize(double[] firstFive) {
