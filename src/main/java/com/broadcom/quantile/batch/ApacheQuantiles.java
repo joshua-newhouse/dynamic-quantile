@@ -1,7 +1,6 @@
 package com.broadcom.quantile.batch;
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
-
 import java.util.Arrays;
 
 public class ApacheQuantiles {
