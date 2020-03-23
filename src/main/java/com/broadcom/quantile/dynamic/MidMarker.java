@@ -20,10 +20,10 @@ public class MidMarker extends Marker {
         }
 
         this.updateDesiredPosition();
-        updateQuartile();
+        updateQuantile();
     }
 
-    private void updateQuartile() {
+    private void updateQuantile() {
         double offsetFromDesired = this.nPrime - this.n;
         int offsetFromRNeighbor = rNeighbor.n - this.n;
         int offsetFromLNeighbor = lNeighbor.n - this.n;
