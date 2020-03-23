@@ -1,0 +1,17 @@
+package com.broadcom.quantile.dynamic;
+
+public class MaxMarker extends Marker {
+    public MaxMarker(double q, int n, double nPrime, double dPrime) {
+        super(q, n, nPrime, dPrime);
+    }
+
+    @Override
+    public void update(double value) {
+        this.n++;
+        this.updateDesiredPosition();
+
+        if (value > this.q) {
+            this.q = value;
+        }
+    }
+}
