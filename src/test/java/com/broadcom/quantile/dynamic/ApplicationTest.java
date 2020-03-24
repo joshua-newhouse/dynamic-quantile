@@ -1,5 +1,6 @@
 package com.broadcom.quantile.dynamic;
 
+import com.broadcom.quantile.batch.ApacheQuantiles;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -61,7 +62,7 @@ public class ApplicationTest {
         double[] inputs = new double[elements];
 
         for (int i = 0; i < inputs.length; i++) {
-            inputs[i] = Math.random();
+            inputs[i] = Math.random() * 100000000.0 - 50000.0;
         }
 
         Quantile q90 = new Quantile(0.90);
@@ -72,9 +73,44 @@ public class ApplicationTest {
 
         double totalTimeSeconds = (double)(endTime - startTime) / 1000.0;
 
-        System.out.println(String.format("Total time in seconds: %f\nObservations per second: %f",
+        System.out.println(String.format("Stream Total time in seconds: %f\nObservations per second: %f",
                 totalTimeSeconds, (double)elements / totalTimeSeconds));
 
         System.out.println(q90.toString());
+    }
+
+    /* Requires -Xmx16384m setting for the Apache calculation */
+    @Test
+    public void comparisonTest() {
+        int elements = 50000000;
+        double[] inputs = new double[elements];
+
+        for (int i = 0; i < inputs.length; i++) {
+            inputs[i] = Math.random() * 100000000.0 - 50000.0;
+        }
+
+        Quantile q90 = new Quantile(0.90);
+
+        long startTime = System.currentTimeMillis();
+        q90.update(inputs);
+        long endTime = System.currentTimeMillis();
+
+        double totalTimeSeconds = (double)(endTime - startTime) / 1000.0;
+
+        System.out.println(String.format("Stream Total time in seconds: %f\nObservations per second: %f",
+                totalTimeSeconds, (double)elements / totalTimeSeconds));
+
+        System.out.println(q90.toString());
+
+        startTime = System.currentTimeMillis();
+        double q1 = ApacheQuantiles.getPercentile(inputs, 90);
+        endTime = System.currentTimeMillis();
+
+        totalTimeSeconds = (double)(endTime - startTime) / 1000.0;
+
+        System.out.println(String.format("Batch Total time in seconds: %f\nObservations per second: %f",
+                totalTimeSeconds, (double)elements / totalTimeSeconds));
+
+        System.out.println(String.format("Batch quantile: %f", q1));
     }
 }
