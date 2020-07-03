@@ -1,9 +1,7 @@
-package com.broadcom.quantile.dynamic;
+package com.psquared.quantile.dynamic;
 
-import com.broadcom.quantile.batch.ApacheQuantiles;
+import com.psquared.quantile.batch.ApacheQuantiles;
 import org.junit.Test;
-
-import java.util.Arrays;
 
 import static org.junit.Assert.assertEquals;
 

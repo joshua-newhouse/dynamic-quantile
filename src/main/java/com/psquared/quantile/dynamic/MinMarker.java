@@ -1,4 +1,4 @@
-package com.broadcom.quantile.dynamic;
+package com.psquared.quantile.dynamic;
 
 public class MinMarker extends Marker {
     public MinMarker(double q, int n, double nPrime, double dPrime) {

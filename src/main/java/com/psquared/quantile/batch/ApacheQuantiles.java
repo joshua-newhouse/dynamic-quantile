@@ -1,4 +1,4 @@
-package com.broadcom.quantile.batch;
+package com.psquared.quantile.batch;
 
 import org.apache.commons.math3.stat.descriptive.DescriptiveStatistics;
 import java.util.Arrays;

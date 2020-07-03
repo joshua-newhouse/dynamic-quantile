@@ -1,4 +1,4 @@
-package com.broadcom.quantile.dynamic;
+package com.psquared.quantile.dynamic;
 
 import java.util.Arrays;
 

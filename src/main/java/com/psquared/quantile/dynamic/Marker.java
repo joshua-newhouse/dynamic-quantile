@@ -1,4 +1,4 @@
-package com.broadcom.quantile.dynamic;
+package com.psquared.quantile.dynamic;
 
 import org.apache.commons.lang3.builder.ToStringBuilder;
 import org.apache.commons.lang3.builder.ToStringStyle;

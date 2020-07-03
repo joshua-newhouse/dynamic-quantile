@@ -1,4 +1,4 @@
-package com.broadcom.quantile.dynamic;
+package com.psquared.quantile.dynamic;
 
 public class MidMarker extends Marker {
     private Marker lNeighbor;

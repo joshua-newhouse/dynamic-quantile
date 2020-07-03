@@ -1,4 +1,4 @@
-package com.broadcom.quantile.dynamic;
+package com.psquared.quantile.dynamic;
 
 public class MaxMarker extends Marker {
     public MaxMarker(double q, int n, double nPrime, double dPrime) {
